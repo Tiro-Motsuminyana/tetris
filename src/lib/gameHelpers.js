@@ -1,4 +1,4 @@
-export const STAGE_WIDTH = 12;
+export const STAGE_WIDTH = 10;
 export const STAGE_HEIGHT = 20;
 
 export const createStage = () =>
@@ -7,18 +7,20 @@ export const createStage = () =>
   );
 
 export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
-  for (let y = 0; y < player.tetromino.length; y += 1) {
-    for (let x = 0; x < player.tetromino[y].length; x += 1) {
-      if (player.tetromino[y][x] !== 0) {
-        const nextY = y + player.pos.y + moveY;
-        const nextX = x + player.pos.x + moveX;
+  for (let row = 0; row < player.tetromino.length; row += 1) {
+    for (let col = 0; col < player.tetromino[row].length; col += 1) {
+      if (player.tetromino[row][col] !== 0) {
+        const nextY = player.pos.y + row + moveY;
+        const nextX = player.pos.x + col + moveX;
 
-        if (
-          !stage[nextY] ||
-          !stage[nextY][nextX] ||
-          stage[nextY][nextX][1] !== 'clear'
-        ) {
-          return true;
+        // Allow pieces to rotate above the stage (negative y)
+        if (nextY >= STAGE_HEIGHT) return true;
+        if (nextX < 0 || nextX >= STAGE_WIDTH) return true;
+
+        // Only check stage collision if we're within visible playfield
+        if (nextY >= 0) {
+          const rowOnStage = stage[nextY];
+          if (!rowOnStage || rowOnStage[nextX][1] !== 'clear') return true;
         }
       }
     }

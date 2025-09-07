@@ -1,18 +1,19 @@
 import React from 'react';
 import { TETROMINOS } from '../lib/tetrominos';
 
-const Cell = ({ type }) => (
-  <div
-    className="w-auto aspect-square"
-    style={{
-      background: `rgba(${TETROMINOS[type].color}, 0.8)`,
-      border: `${type === 0 ? '0px solid' : '4px solid'}`,
-      borderBottomColor: `rgba(${TETROMINOS[type].color}, 0.1)`,
-      borderRightColor: `rgba(${TETROMINOS[type].color}, 1)`,
-      borderTopColor: `rgba(${TETROMINOS[type].color}, 1)`,
-      borderLeftColor: `rgba(${TETROMINOS[type].color}, 0.3)`,
-    }}
-  />
-);
+const Cell = ({ type }) => {
+  const def = TETROMINOS?.[type] || TETROMINOS[0];
+  const isEmpty = type === 0 || !def?.color;
+
+  return (
+    <div
+      className={`w-full h-full ${isEmpty ? '' : 'border border-gray-800 rounded-sm shadow-inner'}`}
+      style={{
+        backgroundColor: isEmpty ? 'transparent' : `rgba(${def.color}, 1)`,
+        boxSizing: 'border-box',
+      }}
+    />
+  );
+};
 
 export default React.memo(Cell);

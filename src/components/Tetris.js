@@ -23,6 +23,7 @@ import ConnectButton from './ConnectButton';
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+  const [promptShown, setPromptShown] = useState(false); // Added this line
 
   const [player, updatePlayerPos, resetPlayer, playerRotate, nextTetromino] = usePlayer();
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
@@ -47,11 +48,9 @@ const Tetris = () => {
   };
 
   const drop = () => {
-    // Check for level up before moving the piece
     if (rows >= (level + 1) * 5) {
       const newLevel = level + 1;
       setLevel(newLevel);
-      // Calculate new drop time based on the new level
       setDropTime(1000 / (newLevel + 1) + 200);
     }
 
@@ -81,13 +80,19 @@ const Tetris = () => {
 
   const hardDrop = () => {
     let dropAmount = 0;
+    // Calculate maximum possible drop distance
     while (!checkCollision(player, stage, { x: 0, y: dropAmount + 1 })) {
       dropAmount++;
     }
-    updatePlayerPos({ x: 0, y: dropAmount, collided: true });
+    // Ensure piece snaps to bottom even if partially above stage
+    updatePlayerPos({ 
+      x: 0, 
+      y: dropAmount,
+      collided: true 
+    });
   };
 
-  const move = ({ keyCode }) => {
+  const move = ({ keyCode, preventDefault }) => {
     if (!gameOver) {
       if (keyCode === 37) {
         movePlayer(-1);
@@ -108,31 +113,42 @@ const Tetris = () => {
   }, dropTime);
 
   useEffect(() => {
-    if (gameOver) {
+    if (gameOver && !promptShown) {
       const name = prompt('Game Over! Enter your name for the leaderboard:');
-      addScore(name, score);
+      if (name) {
+        addScore(name, score);
+        setPromptShown(true);
+      }
     }
-  }, [gameOver, addScore, score]);
+  }, [gameOver, addScore, score, promptShown]);
 
   return (
-    <div className="w-screen h-screen bg-black overflow-hidden" role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
-      <div className="flex items-start p-10 mx-auto">
-        <Stage stage={stage} />
-        <aside className="w-full max-w-xs block p-5">
+    <div className="w-screen h-screen bg-gray-900 flex items-center justify-center p-4" role="button" tabIndex="0" onKeyDown={e => {
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault();
+      }
+      move(e);
+    }} onKeyUp={keyUp}>
+      <div className="flex items-start gap-8 max-w-6xl w-full">
+        <div className="flex-1 min-w-0">
+          <Stage stage={stage} />
+        </div>
+        <aside className="w-80 max-h-[calc(100vh-2rem)] overflow-y-auto bg-gray-800 p-6 rounded-lg space-y-4">
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
-            <div>
+            <div className="space-y-2">
               <Display text={`Score: ${score}`} />
               <Display text={`Rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
             </div>
           )}
-          <StartButton callback={startGame} />
-          <ConnectButton connectWallet={connectWallet} walletAddress={walletAddress} />
-          <Display text="Next Piece" />
-          <NextPiece nextTetromino={nextTetromino} />
-          <Leaderboard scores={leaderboard} />
+          <div className="space-y-4 pt-2">
+            <StartButton callback={startGame} />
+            <ConnectButton connectWallet={connectWallet} walletAddress={walletAddress} />
+            <NextPiece nextTetromino={nextTetromino} />
+            <Leaderboard scores={leaderboard} />
+          </div>
         </aside>
       </div>
     </div>

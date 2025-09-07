@@ -1,20 +1,26 @@
 import React from 'react';
 import Cell from './Cell';
+import { STAGE_WIDTH } from '../lib/gameHelpers';
+
+const CELL_SIZE = 24;
 
 const Stage = ({ stage }) => (
   <div
-    className="grid"
+    className="mx-auto border-2 border-gray-600 bg-gray-900 rounded-lg grid relative overflow-hidden"
     style={{
-      gridTemplateRows: `repeat(${stage.length}, calc(25vw / ${stage[0].length}))`,
-      gridTemplateColumns: `repeat(${stage[0].length}, 1fr)`,
-      gridGap: '1px',
-      border: '2px solid #333',
-      width: '100%',
-      maxWidth: '25vw',
-      background: '#111',
+      gridTemplateRows: `repeat(${stage.length}, ${CELL_SIZE}px)`,
+      gridTemplateColumns: `repeat(${STAGE_WIDTH}, ${CELL_SIZE}px)`,
+      backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+      backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
+      width: 'fit-content'
     }}
+    role="grid"
+    aria-label="Tetris stage"
   >
-    {stage.map((row) => row.map((cell, x) => <Cell key={x} type={cell[0]} />))}
+    {stage.map((row, y) =>
+      row.map((cell, x) => <Cell key={`${y}-${x}`} type={cell[0]} />)
+    )}
   </div>
 );
 
