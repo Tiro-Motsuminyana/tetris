@@ -1,0 +1,20 @@
+{
+    "frame": {
+      "name": "tetris",
+      "version": "1",
+      "iconUrl": "https://imgur.com/gallery/contratetris-sS4jtre#/t/tetris",
+      "homeUrl": "https://tetris-jojkuh9kp-tiro-motsuminyanas-projects.vercel.app/tetris",
+      "splashImageUrl": "https://imgur.com/gallery/contratetris-sS4jtre#/t/tetris",
+      "splashBackgroundColor": "#6200EA",
+      "subtitle": "Tetris the game",
+      "description": "A very simple tetris game which was vibecoded and hosted on vercel",
+      "primaryCategory": "games"
+    },
+    "accountAssociation": {
+      "header": "eyJmaWQiOjEzMjY0MTMsInR5cGUiOiJhdXRoIiwia2V5IjoiMHg4REYyQjUzYTc0MEIxNTk4MEVhQTRENzlhMDE2NzM3ZEY3Mjc4NUVkIn0",
+      "payload": "eyJkb21haW4iOiIifQ",
+      "signature": "3poLTGiJ0MDq4XWH74DnDL3V50/9AwmAJ3901FtVqzoRNP4if9OUfYW5Ug62dGgXReJlKydMRC+nNA695Yc6shs="
+    }
+  }
+  
+  
