@@ -1,0 +1,37 @@
+{
+  "frame": {
+    "name": "tetris",
+    "version": "1",
+    "iconUrl": "https://tetris-8rtuqj7ru-tiro-motsuminyanas-projects.vercel.app/icon.png",
+    "homeUrl": "https://tetris-8rtuqj7ru-tiro-motsuminyanas-projects.vercel.app/tetris",
+    "subtitle": "This is a game of tetris played and hosted on farcaster",
+    "description": "A classic puzzle game where you rotate and stack falling blocks to clear lines and score points.",
+    "primaryCategory": "games",
+    "splashBackgroundColor": "#1E3A8A",
+    "splashImageUrl": "https://tetris-8rtuqj7ru-tiro-motsuminyanas-projects.vercel.app/splash.png"
+  },
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEzMjY0MTMsInR5cGUiOiJhdXRoIiwia2V5IjoiMHg4REYyQjUzYTc0MEIxNTk4MEVhQTRENzlhMDE2NzM3ZEY3Mjc4NUVkIn0",
+    "payload": "eyJkb21haW4iOiIifQ",
+    "signature": "3poLTGiJ0MDq4XWH74DnDL3V50/9AwmAJ3901FtVqzoRNP4if9OUfYW5Ug62dGgXReJlKydMRC+nNA695Yc6shs="
+  }
+}{
+  "frame": {
+    "name": "Tetris",
+    "version": "1",
+    "iconUrl": "https://tetris-8rtuqj7ru-tiro-motsuminyanas-projects.vercel.app/icon.png",
+    "homeUrl": "https://tetris-8rtuqj7ru-tiro-motsuminyanas-projects.vercel.app",
+    "imageUrl": "https://tetris-8rtuqj7ru-tiro-motsuminyanas-projects.vercel.app/image.png",
+    "splashImageUrl": "https://tetris-8rtuqj7ru-tiro-motsuminyanas-projects.vercel.app/splash.png",
+    "splashBackgroundColor": "#1E3A8A",
+    "webhookUrl": "https://tetris-8rtuqj7ru-tiro-motsuminyanas-projects.vercel.app/api/webhook",
+    "subtitle": "A classic puzzle game where you rotate and stack falling blocks to clear lines and score points.",
+    "description": "Tetris is a timeless puzzle game where geometric shapes, called tetrominoes, fall from the top of the screen. Players must rotate and move the blocks to create complete horizontal lines, which then disappear to make space for more pieces. The challenge increases as the game speeds up, testing your reflexes, planning, and strategy.",
+    "primaryCategory": "games"
+  },
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEzMjY0MTMsInR5cGUiOiJhdXRoIiwia2V5IjoiMHg4REYyQjUzYTc0MEIxNTk4MEVhQTRENzlhMDE2NzM3ZEY3Mjc4NUVkIn0",
+    "payload": "eyJkb21haW4iOiJ0ZXRyaXMtOHJ0dXFqN3J1LXRpcm8tbW90c3VtaW55YW5hcy1wcm9qZWN0cy52ZXJjZWwuYXBwIn0",
+    "signature": "jX+vy/2WvPWBNRjvDcS2i35evOjuZ8neoiqq0XPG64o2YSZQWZTLZpbYhWBBne702mRVQFNsob6PNxZZsRGaIxs="
+  }
+}
